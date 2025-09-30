@@ -1,0 +1,8 @@
+{
+  "name": "mcpgrid-infra",
+  "version": "1.0.0",
+  "repository": "git@github.com:mcpgrid-ai/mcpgrid-infra.git",
+  "scripts": {
+    "docker": "docker-compose up -d"
+  }
+}
