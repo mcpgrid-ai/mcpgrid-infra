@@ -13,16 +13,19 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  pubsub:
+  google_cloud:
     image: google/cloud-sdk:latest
-    container_name: pubsub
+    container_name: google-cloud
     command: >
-      gcloud beta emulators pubsub start
-      --host-port=0.0.0.0:8085
+      gcloud beta emulators pubsub start --host-port=0.0.0.0:8085
     ports:
       - "8085:8085"
     environment:
-      - PUBSUB_PROJECT_ID=mcpgrid-ai
+      - PUBSUB_PROJECT_ID=mcp-box
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085"]
+      interval: 5s
+      retries: 5
 
 volumes:
   postgres_data:
